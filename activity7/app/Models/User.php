@@ -9,6 +9,18 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public function group()
+    {
+        // Only applies if the user is a student
+        return $this->belongsTo(Group::class);
+    }
+
+    // Optional helper method to check roles
+    public function isRole($role)
+    {
+        return $this->role === $role;
+    }
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 

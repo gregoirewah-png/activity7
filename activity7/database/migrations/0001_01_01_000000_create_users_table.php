@@ -12,17 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            // Role to distinguish Student, Teacher, Admin
-            $table->enum('role', ['student', 'teacher', 'admin'])->default('student'); 
-            // Only students will have a group_id, so it must be nullable
-            $table->foreignId('group_id')->nullable()->constrained('groups')->onDelete('set null');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        $table->id();
+        $table->string('name');
+        $table->string('email')->unique();
+        $table->timestamp('email_verified_at')->nullable();
+        $table->string('password');
+        $table->rememberToken();
+        $table->timestamps();
+    });
 
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

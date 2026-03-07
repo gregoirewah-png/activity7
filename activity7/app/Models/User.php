@@ -9,6 +9,17 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public function student() {
+        return $this->hasOne(Student::class);
+    }
+    public function teacher() {
+        return $this->hasOne(Teacher::class);
+    }
+    public function administrator() {
+        return $this->hasOne(Administrator::class);
+    }
+
+    
     public function group()
     {
         // Only applies if the user is a student
